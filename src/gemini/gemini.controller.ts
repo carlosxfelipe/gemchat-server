@@ -1,12 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 import { GeminiService } from './gemini.service';
 
 @Controller('gemini')
 export class GeminiController {
   constructor(private readonly geminiService: GeminiService) {}
 
-  @Get()
-  getHelloWorld(): string {
-    return 'Olá, mundo!';
+  @Post('basic-prompt')
+  basicPrompt() {
+    return this.geminiService.basicPrompt();
   }
 }
+
+// POST http://localhost:3000/api/gemini/basic-prompt
